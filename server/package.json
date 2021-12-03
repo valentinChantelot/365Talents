@@ -1,0 +1,8 @@
+{
+  "name": "365Talents",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:valentinChantelot/365Talents.git",
+  "author": "Valentin Chantelot",
+  "license": "MIT"
+}
