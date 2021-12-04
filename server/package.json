@@ -1,8 +1,18 @@
 {
-  "name": "365Talents",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:valentinChantelot/365Talents.git",
-  "author": "Valentin Chantelot",
-  "license": "MIT"
+    "name": "365Talents",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon index.js",
+        "start": "node index.js"
+    },
+    "repository": "git@github.com:valentinChantelot/365Talents.git",
+    "author": "Valentin Chantelot",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
 }
