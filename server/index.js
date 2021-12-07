@@ -1,23 +1,30 @@
 import express from "express"
+import axios from "axios"
+import cors from "cors"
+
 import { Scraper } from "./scraper/scraper.js"
 
 const app = express()
 const port = 3650
 
-const url = "https://www.linkedin.com/company/365talents/about"
+app.use(cors())
 
 app.listen(port, () => {
     console.info(`App started. Listening at http://localhost:${port}`)
 })
 
-app.get("/", (req, res) => {
-    res.send("Backend ready :)")
-})
+app.get("/company", async (req, res) => {
+    const url = req.query.url
 
-app.get("/company", (req, res) => {
-    const url = req.params.url
-    console.log("url:", url)
-    res.status(200).json({ test: "yes" })
-})
+    if (!url) {
+        res.status(400).json("Company name is required")
+        return
+    }
 
-Scraper(url)
+    // const data = await Scraper(url)
+
+    const data = {
+        name: "test",
+    }
+    res.status(200).json(data)
+})
