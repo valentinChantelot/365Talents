@@ -1,0 +1,47 @@
+/*- 1rem = 10px - but default font size stay unchaged -*/
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: $ubuntu;
+    font-size: 1.6rem;
+    line-height: 2.4em;
+    overflow-y: auto;
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+.button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 99999px;
+    line-height: 4rem;
+    padding: 0 2rem;
+
+    &--accent {
+        background-color: $accent;
+        color: $dark;
+    }
+
+    &--primary {
+        background-color: $primary;
+        color: white;
+    }
+}

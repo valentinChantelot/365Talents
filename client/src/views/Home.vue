@@ -2,6 +2,8 @@
     <div class="home">
         <input type="text" v-model="inputValue" />
         <button @click="sendToAPI">click</button>
+
+        <h1>HOME</h1>
     </div>
 </template>
 
@@ -25,3 +27,9 @@ export default {
     },
 }
 </script>
+
+<style lang="scss">
+h1 {
+    color: $accent;
+}
+</style>

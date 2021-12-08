@@ -1,6 +1,11 @@
-import { createRouter, createWebHistory } from "vue-router"
+import Vue from "vue"
+import VueRouter from "vue-router"
+
 import Home from "../views/Home.vue"
+import Search from "../views/Search.vue"
 import About from "../views/About.vue"
+
+Vue.use(VueRouter)
 
 const routes = [
     {
@@ -9,14 +14,20 @@ const routes = [
         component: Home,
     },
     {
+        path: "/search",
+        name: "Search",
+        component: () => import(Search),
+    },
+    {
         path: "/about",
         name: "About",
-        component: () => About,
+        component: () => import(About),
     },
 ]
 
-const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+const router = new VueRouter({
+    mode: "history",
+    base: process.env.BASE_URL,
     routes,
 })
 
