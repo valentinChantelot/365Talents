@@ -4,10 +4,9 @@ import Parser from "./lib/parser.js"
 import Login from "./lib/login.js"
 
 export const Scraper = async (url) => {
-    let page = null
-    let login_status = null
+    let page, login_status
 
-    if (!page) {
+    if (!login_status) {
         // Launch puppeteer
         const browser = await Puppeteer.launch()
         page = await browser.newPage()
@@ -24,12 +23,25 @@ export const Scraper = async (url) => {
     }
 
     // Access required company page
-    try {
-        await page.goto(url, { waitUntil: "networkidle2" })
-    } catch {
-        console.error(`Unable to reach ${url}`)
+    const response = await page.goto(url, { waitUntil: "networkidle2" })
+    if (response._status === 404) {
+        return {
+            error: "La page demandé n'existe pas.",
+        }
+    }
+    if (response._status === 500) {
+        return {
+            error: "Impossible de joindre le serveur de LinkedIn.",
+        }
     }
 
-    const contents = await Parser(page)
-    return contents
+    try {
+        const contents = await Parser(page)
+        return contents
+    } catch (error) {
+        console.error(error)
+        return {
+            error: `Error during parsing : ${error}`,
+        }
+    }
 }
