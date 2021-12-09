@@ -29,7 +29,7 @@ export default {
 <style lang="scss" scoped>
 .illustration {
     display: block;
-    max-width: 80%;
+    max-width: 600px;
     margin: 0 auto;
 }
 </style>

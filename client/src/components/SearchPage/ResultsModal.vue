@@ -15,12 +15,15 @@
         <p class="chip">{{ company.activityArea }}</p>
 
         <div class="results-modal__content">
-            <p>{{ company.description }}</p>
+            <p class="description">{{ company.description }}</p>
 
             <div class="global-lookup" v-if="company.globalLookup.length">
-                <p v-for="(stat, index) in company.globalLookup" :key="index">
-                    {{ stat }}
-                </p>
+                <div v-for="(stat, index) in company.globalLookup" :key="index">
+                    <h4>{{ Object.keys(stat)[0] }}</h4>
+                    <p>{{ Object.values(stat)[0] }}</p>
+                </div>
+                <h4>{{ Object.keys(this.phoneNumber)[0] }}</h4>
+                <p>{{ Object.values(this.phoneNumber)[0] }}</p>
             </div>
         </div>
         <a
@@ -43,6 +46,22 @@ export default {
     props: {
         company: Object,
     },
+    data() {
+        return {
+            phoneNumber: null,
+        }
+    },
+    mounted() {
+        this.company.globalLookup.forEach((stat, index) => {
+            for (const [key, value] of Object.entries(stat)) {
+                if (value.startsWith("+") && !isNaN(value.charAt(1))) {
+                    const splittedString = value.split("\n")
+                    this.phoneNumber = { [key]: splittedString[0] }
+                    this.company.globalLookup.splice(1, index)
+                }
+            }
+        })
+    },
 }
 </script>
 
@@ -53,13 +72,33 @@ export default {
     }
 
     &__content {
+        text-align: left;
         max-width: 80%;
         margin: 0 auto;
+
+        .description {
+            margin-bottom: 3rem;
+        }
+
+        .global-lookup {
+            h4 {
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: $dark;
+            }
+
+            p {
+                margin-bottom: 1rem;
+                font-size: 1.6rem;
+                font-weight: 400;
+                color: $dark;
+            }
+        }
     }
 
     .logo {
         position: absolute;
-        top: -20%;
+        top: -5rem;
         left: 10vw;
 
         border-radius: 20px;

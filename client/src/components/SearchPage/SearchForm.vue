@@ -34,22 +34,16 @@ export default {
     methods: {
         sendToAPI: async function () {
             this.$emit("loading", true)
-
             try {
                 const { data } = await getCompanyInfos({
                     company: this.companyName,
                 })
-                console.log("data:", data)
                 this.$emit("loading", false)
+                this.$emit("results", data)
             } catch (error) {
-                console.log("error:", error)
-
+                this.$emit("errors", error)
                 this.$emit("loading", false)
             }
-
-            // data.error
-            //     ? this.$emit("errors", data.error)
-            //     : this.$emit("results", data)
         },
     },
 }
