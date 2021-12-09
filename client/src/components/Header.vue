@@ -33,12 +33,15 @@ export default {
 
 <style lang="scss" scoped>
 header {
-    position: relative;
     padding: 1rem 4rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include phone {
+        flex-direction: column;
+    }
 
     a {
         color: $dark;
@@ -46,18 +49,12 @@ header {
     }
 
     .main-nav {
-        position: absolute;
-        top: -2rem;
-        left: 50%;
-
         display: flex;
-        padding: 4rem 8rem;
-
-        border-radius: 9999px;
         gap: 4rem;
-        background-color: white;
 
-        transform: translateX(-50%);
+        @include phone {
+            margin-bottom: 1rem;
+        }
 
         a {
             display: block;

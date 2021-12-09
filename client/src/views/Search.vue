@@ -67,24 +67,7 @@ export default {
     },
     data() {
         return {
-            company: {
-                companyName: "365Talents Global",
-                website: "https://www.365talents.com/en/",
-                activityArea: "Logiciels informatiques",
-                description:
-                    "365Talents uses AI to solve major talent management challenges related to internal mobility, predicting future skill gaps, skills mapping, employee engagement, employee turnover, workforce planning and more.\n\nWe help you solve your HR challenges, so you can focus on what matters most: Your people.\n\nOur AI platform is based on machine learning and NLP algorithms in multiple languages.",
-                logo: "https://media-exp1.licdn.com/dms/image/C560BAQFp6v1JUfCBYg/company-logo_200_200/0/1569302232532?e=1646870400&v=beta&t=_sVPsjuxeGdHt-PJ_9bDXVGgvb0TsH7R3eEU2Idae1Q",
-                globalLookup: [
-                    { "Site web": "https://www.365talents.com/en/" },
-                    {
-                        Téléphone:
-                            "+1 917 9098370\nLe numéro de téléphone est le +1 917 9098370",
-                    },
-                    { "Taille de l’entreprise": "11-50 employés" },
-                    { "Siège social": "New York, New York City" },
-                    { "Fondée en": "2015" },
-                ],
-            },
+            company: null,
             results: null,
             error: null,
         }
@@ -113,8 +96,16 @@ export default {
     display: flex;
     align-items: center;
 
+    @include phone {
+        flex-direction: column;
+    }
+
     &__content {
         padding: 10vh 0 0 10vw;
+
+        @include phone {
+            padding: 0;
+        }
 
         .more-infos-button {
             display: block;
@@ -132,6 +123,14 @@ export default {
         max-height: 80vh;
 
         z-index: -1;
+
+        @include phone {
+            position: inherit;
+            top: inherit;
+            right: inherit;
+
+            margin-top: 5rem;
+        }
     }
 
     .overlay {

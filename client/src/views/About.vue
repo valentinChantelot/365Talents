@@ -41,6 +41,10 @@ export default {
     h2 {
         font-size: 2.5rem;
         font-weight: 700;
+
+        @include phone {
+            font-size: 1.8rem;
+        }
     }
 
     p {

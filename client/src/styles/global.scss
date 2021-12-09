@@ -8,6 +8,10 @@ body {
     font-size: 1.6rem;
     line-height: 1.4;
     overflow-y: hidden;
+
+    @include phone {
+        overflow-y: auto;
+    }
 }
 
 *,
@@ -30,6 +34,10 @@ h1 {
     font-size: 5rem;
     font-weight: 700;
     line-height: 1.2;
+
+    @include phone {
+        font-size: 3rem;
+    }
 }
 
 .wrapper {

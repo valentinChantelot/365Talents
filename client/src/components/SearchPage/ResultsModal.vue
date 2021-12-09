@@ -1,5 +1,9 @@
 <template>
     <Modal @close="$emit('close')" class="results-modal">
+        <template v-slot:title>
+            <h3>{{ company.companyName }}</h3>
+        </template>
+
         <picture>
             <img
                 :src="company.logo"
@@ -7,10 +11,6 @@
                 class="logo"
             />
         </picture>
-
-        <template v-slot:title>
-            <h3>{{ company.companyName }}</h3>
-        </template>
 
         <p class="chip">{{ company.activityArea }}</p>
 
@@ -67,14 +67,26 @@ export default {
 
 <style lang="scss" scoped>
 .results-modal {
+    @include phone {
+        overflow-y: scroll;
+    }
+
     h3 {
         font-size: 3rem;
+
+        @include phone {
+            text-align: center;
+        }
     }
 
     &__content {
         text-align: left;
         max-width: 80%;
         margin: 0 auto;
+
+        @include phone {
+            max-width: 100%;
+        }
 
         .description {
             margin-bottom: 3rem;
@@ -102,6 +114,12 @@ export default {
         left: 10vw;
 
         border-radius: 20px;
+
+        @include phone {
+            position: inherit;
+            display: block;
+            margin: 0 auto 2rem auto;
+        }
     }
 
     .chip {
@@ -109,10 +127,18 @@ export default {
         font-size: 1.6rem;
         color: $dark;
         font-weight: 400;
+
+        @include phone {
+            text-align: center;
+        }
     }
 
     .button {
         margin: 4rem auto;
+
+        @include phone {
+            font-size: 1.2rem;
+        }
     }
 }
 </style>

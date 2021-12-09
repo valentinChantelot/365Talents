@@ -1,5 +1,5 @@
 <template>
-    <section class="modal modal--from-bottom">
+    <section class="modal">
         <button class="close-button" @click="$emit('close')">
             <Close class="close-button__icon" />
         </button>
@@ -22,10 +22,12 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-    position: absolute;
+    position: fixed;
     left: 50%;
+    bottom: 4rem;
     transform: translateX(-50%);
 
+    width: 80vw;
     padding: 2rem 4rem;
 
     border-radius: 30px;
@@ -34,9 +36,15 @@ export default {
     background-color: $light;
     z-index: $modal;
 
-    &--from-bottom {
-        width: 80vw;
-        bottom: 4rem;
+    @include phone {
+        top: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+
+        width: inherit;
+        transform: inherit;
+        text-align: left;
     }
 
     .close-button {
@@ -61,9 +69,9 @@ export default {
     }
 
     p {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: rgba($dark, 0.7);
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: $dark;
     }
     .illustration {
         display: block;

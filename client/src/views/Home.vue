@@ -47,10 +47,19 @@ export default {
     display: flex;
     align-items: flex-end;
 
+    @include phone {
+        padding: 0;
+        align-items: flex-start;
+    }
+
     .wrapper {
         display: grid;
         grid-template-columns: auto 650px;
         column-gap: 5rem;
+
+        @include phone {
+            grid-template-columns: 1fr;
+        }
 
         .content {
             max-width: 65rem;
@@ -82,6 +91,12 @@ export default {
             width: 40vw;
 
             background-color: $dark;
+
+            @include phone {
+                width: calc(100% - 2 * 2rem);
+                bottom: 40vh;
+                background-color: rgba($accent, 0.4);
+            }
         }
 
         &--light {
@@ -94,6 +109,21 @@ export default {
             transform: translate(20%, 20%) rotate(-20deg);
 
             background-color: $light;
+
+            @include phone {
+                display: none;
+            }
+        }
+    }
+
+    .illustration {
+        @include phone {
+            grid-row: 1;
+
+            max-width: 60%;
+
+            display: block;
+            margin: 4rem auto;
         }
     }
 }
