@@ -13,7 +13,7 @@
             <SearchForm
                 @loading="handleLoading"
                 @results="handleResults"
-                @errors="handleErrors"
+                @errors="handleError"
             />
             <button
                 type="button"
@@ -22,26 +22,30 @@
             >
                 MORE INFOS
             </button>
-            <MoreInfosModal v-if="showMoreInfos" @close="closeAllModals" />
-            <ErrorModal
-                v-if="showError"
-                @close="closeAllModals"
-                :errors="errors"
-            />
-
-            <div
-                class="overlay"
-                v-if="overlayShouldBeDisplayed"
-                @click="closeAllModals"
-            ></div>
         </section>
+        <MoreInfosModal v-if="showMoreInfos" @close="closeAllModals" />
+        <ResultsModal
+            v-if="showResults && company"
+            :company="company"
+            @close="closeAllModals"
+        />
+        <LoadingModal v-if="isLoading" @close="closeAllModals" />
+        <ErrorModal v-if="showError" @close="closeAllModals" :error="error" />
+
+        <div
+            class="overlay"
+            v-if="overlayShouldBeDisplayed"
+            @click="closeAllModals"
+        ></div>
     </div>
 </template>
 
 <script>
 import modalMixin from "../mixins/modals.vue"
 import SearchForm from "../components/SearchPage/SearchForm.vue"
+import LoadingModal from "../components/SearchPage/LoadingModal.vue"
 import MoreInfosModal from "../components/SearchPage/MoreInfosModal.vue"
+import ResultsModal from "../components/SearchPage/ResultsModal.vue"
 import ErrorModal from "../components/SearchPage/ErrorModal.vue"
 import Illustration from "../assets/undraw-search-2.svg"
 import {
@@ -56,13 +60,24 @@ export default {
     components: {
         Illustration,
         SearchForm,
+        LoadingModal,
+        ResultsModal,
         MoreInfosModal,
         ErrorModal,
     },
     data() {
         return {
+            company: {
+                companyName: "365Talents",
+                website: "https://www.365talents.com/fr/decouvrir-365talents/",
+                activityArea: "Logiciels informatiques",
+                description:
+                    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, a laudantium minima rerum, corrupti vel natus quos nostrum, eum cum culpa enim. Repellendus possimus nobis exercitationem autem adipisci iste animi.",
+                logo: "https://media-exp1.licdn.com/dms/image/C4D0BAQEM_bhwh1rcjQ/company-logo_200_200/0/1553619292550?e=1646870400&v=beta&t=YDs1EVqvfqWKuFX2MuYWXfXDwYJ8XmV26TLSW0OUVw4",
+                globalLookup: [],
+            },
             results: null,
-            errors: null,
+            error: null,
         }
     },
     methods: {
@@ -70,11 +85,11 @@ export default {
             this.openModal(MORE_INFOS_MODAL)
         },
         handleResults: function (results) {
-            this.results = results
+            this.company = results
             this.openModal(RESULTS_MODAL)
         },
-        handleErrors: function (errors) {
-            this.errors = errors
+        handleError: function (error) {
+            this.error = error
             this.openModal(ERROR_MODAL)
         },
     },

@@ -13,7 +13,7 @@ export default {
             isLoading: false,
             showMoreInfos: false,
             showError: false,
-            showResults: false,
+            showResults: true,
         }
     },
     computed: {

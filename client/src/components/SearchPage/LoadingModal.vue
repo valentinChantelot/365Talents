@@ -1,17 +1,17 @@
 <template>
     <Modal @close="$emit('close')">
         <template v-slot:illustration>
-            <ErrorSvg class="illustration" />
+            <LoadingSvg class="illustration" />
         </template>
 
         <template v-slot:title>
-            <h3>Oups, it failed !</h3>
+            <h3>Loading...</h3>
         </template>
 
         <template v-slot:text>
             <p>
-                Problem encountered : <br />
-                {{ error }}
+                We are retrieving the requested informations. :) <br />
+                This operation could take a minute.
             </p>
         </template>
     </Modal>
@@ -19,15 +19,12 @@
 
 <script>
 import Modal from "../Modal.vue"
-import ErrorSvg from "../../assets/error.svg"
+import LoadingSvg from "../../assets/undrw_loading.svg"
 export default {
-    name: "ErrorModal",
+    name: "LoadingModal",
     components: {
         Modal,
-        ErrorSvg,
-    },
-    props: {
-        error: String,
+        LoadingSvg,
     },
 }
 </script>
