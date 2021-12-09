@@ -16,12 +16,12 @@ const routes = [
     {
         path: "/search",
         name: "Search",
-        component: () => import(Search),
+        component: Search,
     },
     {
         path: "/about",
         name: "About",
-        component: () => import(About),
+        component: About,
     },
 ]
 

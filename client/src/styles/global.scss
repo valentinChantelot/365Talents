@@ -6,8 +6,8 @@ html {
 body {
     font-family: $ubuntu;
     font-size: 1.6rem;
-    line-height: 2.4em;
-    overflow-y: auto;
+    line-height: 1.4;
+    overflow-y: hidden;
 }
 
 *,
@@ -25,15 +25,30 @@ a {
     cursor: pointer;
 }
 
+h1 {
+    margin-bottom: 2rem;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.wrapper {
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
 .button {
-    background: none;
+    display: table;
+    padding: 0 2rem;
+
     border: none;
+    border-radius: 99999px;
+    line-height: 4rem;
+
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    border-radius: 99999px;
-    line-height: 4rem;
-    padding: 0 2rem;
+    background: none;
 
     &--accent {
         background-color: $accent;
@@ -43,5 +58,10 @@ a {
     &--primary {
         background-color: $primary;
         color: white;
+    }
+
+    &--outlined {
+        border: solid 2px $dark;
+        color: $dark;
     }
 }

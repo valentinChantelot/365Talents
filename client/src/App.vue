@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-wrapper">
         <Header />
         <main>
             <router-view />
@@ -17,4 +17,16 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.main-wrapper {
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    main {
+        flex: 1;
+    }
+}
+</style>

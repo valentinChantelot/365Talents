@@ -1,35 +1,100 @@
 <template>
     <div class="home">
-        <input type="text" v-model="inputValue" />
-        <button @click="sendToAPI">click</button>
+        <div class="wrapper">
+            <div class="content">
+                <h1>
+                    Find every informations
+                    <br />
+                    you already have access to.
+                </h1>
+                <p>
+                    With ScrapR you will easily find all company's informations
+                    you could have found by logging into your LinkedIn account.
+                    <br />
+                    Name, logo, link to their website... A real data mine !
+                </p>
+                <router-link to="/search" class="button button--primary">
+                    Yeah, I want to do that !
+                </router-link>
+            </div>
+            <Illustration
+                class="illustration"
+                aria-label="An illustration, showing a woman searching"
+            />
+        </div>
 
-        <h1>HOME</h1>
+        <div class="blob blob--dark"></div>
+        <div class="blob blob--light"></div>
     </div>
 </template>
 
 <script>
-import { getCompanyInfos } from "../services/company"
+import Illustration from "../assets/undraw-search.svg"
 
 export default {
     name: "Home",
-    data() {
-        return {
-            inputValue: "test",
-        }
-    },
-    methods: {
-        sendToAPI: async function () {
-            const { data } = await getCompanyInfos({ company: this.inputValue })
-            data.error
-                ? console.log(`ERREUR : ${data.error}`)
-                : console.log(data)
-        },
+    components: {
+        Illustration,
     },
 }
 </script>
 
 <style lang="scss">
-h1 {
-    color: $accent;
+.home {
+    height: 100%;
+    padding-bottom: 10vh;
+
+    display: flex;
+    align-items: flex-end;
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: auto 650px;
+        column-gap: 5rem;
+
+        .content {
+            max-width: 65rem;
+            margin-right: 10vw;
+
+            p {
+                margin-bottom: 2rem;
+                color: $dark;
+            }
+
+            .button {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .blob {
+        height: 150vh;
+        position: relative;
+
+        border-radius: 999999px;
+        z-index: -1;
+
+        &--dark {
+            position: absolute;
+            right: 2rem;
+            bottom: 5vh;
+
+            width: 40vw;
+
+            background-color: $dark;
+        }
+
+        &--light {
+            position: absolute;
+            left: 10rem;
+            top: 0;
+
+            width: 60rem;
+
+            transform: translate(20%, 20%) rotate(-20deg);
+
+            background-color: $light;
+        }
+    }
 }
 </style>
