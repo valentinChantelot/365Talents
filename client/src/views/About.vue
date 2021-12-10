@@ -16,7 +16,8 @@
 
             <h2>Thanks</h2>
             <p>
-                Thanks to <a href="https://undraw.co/">Undraw</a> for the
+                Thanks to
+                <a href="https://undraw.co/" target="_blank">Undraw</a> for the
                 usefull illustration kit.
             </p>
         </article>

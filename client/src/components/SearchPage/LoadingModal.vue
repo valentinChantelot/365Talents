@@ -10,8 +10,8 @@
 
         <template v-slot:text>
             <p>
-                We are retrieving the requested informations. :) <br />
-                This operation could take a minute.
+                We are retrieving the requested information. :) <br />
+                This operation could take up to a minute.
             </p>
         </template>
     </Modal>

@@ -1,8 +1,8 @@
 <template>
     <form>
         <label for="company_name"
-            >Enter here the name of the company whose data you want to
-            retrieve</label
+            >Enter here the name of the company for wich you want to retrieve
+            data</label
         >
         <input
             type="text"
@@ -15,6 +15,7 @@
             @click.prevent="sendToAPI"
             class="button button--primary"
             type="submit"
+            :disabled="!companyName"
         >
             Search
         </button>

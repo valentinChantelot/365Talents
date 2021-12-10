@@ -26,12 +26,12 @@ export const Scraper = async (url) => {
     const response = await page.goto(url, { waitUntil: "networkidle2" })
     if (response._status === 404) {
         return {
-            error: "La page demandé n'existe pas.",
+            error: "Cannot found page.",
         }
     }
     if (response._status === 500) {
         return {
-            error: "Impossible de joindre le serveur de LinkedIn.",
+            error: "Impossible to reach LinkedIn server.",
         }
     }
 
@@ -40,6 +40,7 @@ export const Scraper = async (url) => {
         return contents
     } catch (error) {
         console.error(error)
+        await browser.close()
         return {
             error: `Error during parsing : ${error}`,
         }

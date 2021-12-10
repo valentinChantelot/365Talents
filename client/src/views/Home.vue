@@ -3,7 +3,7 @@
         <div class="wrapper">
             <div class="content">
                 <h1>
-                    Find every informations
+                    Find every information
                     <br />
                     you already have access to.
                 </h1>
